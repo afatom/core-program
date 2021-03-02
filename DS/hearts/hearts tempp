@@ -1,0 +1,312 @@
+ADTErr HandThrow3Cards(Hand* _hand, int* _cardsArr)
+{
+    size_t numOfCards=0, counter =0;
+    int i=0, j=0, q;
+    /*check if vector[suit] is empty */
+    
+    if(NULL == _hand)
+    {
+        return ERR_NOT_INITIALIZED;
+    }
+    
+    
+    if(NULL == _cardsArr)
+    {
+        return ERR_INVALID_DATA_IN;
+    }
+    
+    q = rand()%4;
+    
+    while(counter<3)
+    {
+    	VectorItemsNum(_hand->m_suits[q], &numOfCards);	
+    	if(numOfCards > 1)
+    	{
+    		VectorDelete(_hand->m_suits[q], (_cardsArr + j));
+		}
+    	++counter;
+    	++j;
+    	q=(++q)%4;
+    }
+    
+    /*sort vector by rank before return*/
+    for (j = 0; j < 4; ++j)
+    {
+        InsertionSort(_hand->m_suits[j]);
+    }
+    return ERR_OK;
+
+
+
+
+
+
+
+
+    ADTErr HandThrow3Cards(Hand * _hand, int *_cardsArr)
+    {
+        size_t numOfCards;
+        int i, j;
+        /*check if vector[suit] is empty */
+        if (NULL == _hand)
+        {
+            return ERR_NOT_INITIALIZED;
+        }
+        if (NULL == _cardsArr)
+        {
+            return ERR_INVALID_DATA_IN;
+        }
+        VectorItemsNum(_hand->m_suits[0], &numOfCards);
+        if (numOfCards < 3)
+        {
+            /*in for loop, pick card */
+            for (i = 1; i < 4; ++i)
+            {
+                VectorItemsNum(_hand->m_suits[i], &numOfCards);
+                if (numOfCards >= 3)
+                {
+                    for (j = 0; j < 3; ++j)
+                    {
+                        VectorDelete(_hand->m_suits[i], (_cardsArr + j));
+                    }
+                    /*sort vector by rank before return*/
+                    for (j = 0; j < 4; ++j)
+                    {
+                        InsertionSort(_hand->m_suits[j]);
+                    }
+                    return ERR_OK;
+                }
+            }
+            return ERR_GENERAL;
+        }
+        for (i = 0; i < 3; ++i)
+        {
+            VectorDelete(_hand->m_suits[0], (_cardsArr + i));
+        }
+        for (j = 0; j < 4; ++j)
+        {
+            InsertionSort(_hand->m_suits[j]);
+        }
+        return ERR_OK;
+    }
+
+
+
+
+
+
+static ADTErr Pass3Cards(Round* _round, int _startingPlayer)
+{
+    int Cards[12]={0};
+    int stp,j;
+    stp = _startingPlayer;
+        /*Take 3 cards from starting player*/
+        PutString(PlayerGetName(_round->m_players[stp]));
+    if ((status = PlayerPassThreeCards(_round->m_players[(stp)], threeCardsArray, IsHumanPlayer(_round->m_players[(stp)]))) != ERR_OK)
+    {
+        return status;
+    }
+    Print3Cards(threeCardsArray, _round->m_deck);
+    printf("Passing 3 above cards to:__ ");
+    sleep(1);
+
+    /******************************************************//*<< throwing cards loop*/
+    for(j=0;j<4;++j)
+    {
+        PutString(PlayerGetName(_round->m_players[(stp + j) % 4]));
+        Print3Cards(Cards+3*j, _round->m_deck);
+        PutString("Passing 3 cards to : ");
+    }
+    /*******************************************************/
+
+
+
+    for (j = 1; j < 4; ++j)
+    {
+        PutString(PlayerGetName(_round->m_players[(stp + j) % 4]));
+        PutString("Passing 3 cards Bellow to : ");
+        Print3Cards(threeCardsArray, _round->m_deck);
+        PutString(PlayerGetName(_round->m_players[(stp + j + 1) % 4]));
+        sleep(1);
+        for (i = 0; i < 3; ++i)
+        {
+            if ((insertStatus = PlayerInsertCard(_round->m_players[(stp + j) % 4], threeCardsArray[i])) != ERR_OK)
+            {
+                return insertStatus;
+            }
+        }
+        if ((status = PlayerPassThreeCards(_round->m_players[(stp + j) % 4],
+                                           threeCardsArray, IsHumanPlayer(_round->m_players[(stp)])) != ERR_OK))
+        {
+            return status;
+        }
+    }
+    /*Give 3 cards for starting player*/
+    Print3Cards(threeCardsArray, _round->m_deck);
+    sleep(1);
+    for (j = 0; j < 3; ++j)
+    {
+        if ((insertStatus = PlayerInsertCard(_round->m_players[(stp)], threeCardsArray[j])) != ERR_OK)
+        {
+            return insertStatus;
+        }
+    }
+}
+
+
+
+
+
+/*******Static functions*/
+
+static ADTErr Pass3Cards(Round* _round, int _startingPlayer)
+{
+    int Cards[12]={0};
+    int stp,j,i,k;
+    ADTErr status;
+    int* cardsPtr = &Cards[0];
+    
+    stp = _startingPlayer;
+    stp=0;
+    PutString("       Passing 3 cards Stage      ");
+
+    /******************************************************//*<< throwing cards loop*/
+    for(j=0;j<4;++j)
+    {
+        PutString(PlayerGetName(_round->m_players[(stp + j) % 4]));
+        if ((status = PlayerPassThreeCards(_round->m_players[(stp + j) % 4],
+         cardsPtr+3*j, IsHumanPlayer(_round->m_players[(stp + j) % 4]))) != ERR_OK)
+        {
+            return status;
+        }
+        Print3Cards(cardsPtr + 3 * j, _round->m_deck);
+    }
+    /*******************************************************/
+
+    /******************************************************/ /*<< Inserting cards loop*/
+    cardsPtr = &Cards[0];
+    for (j = 0; j < 4; ++j)
+    {
+        for (i = 0; i < 3; ++i)
+        {
+            if ((status = PlayerInsertCard(_round->m_players[(stp + j) % 4], *(cardsPtr+(9+j*3+i)%12))) != ERR_OK)
+            {
+                return status;
+            }
+        }
+    
+    }
+    return ERR_OK;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*******Static functions*/
+
+static ADTErr Pass3Cards(Round* _round, int _startingPlayer)
+{
+    int Cards[12]={0};
+    int stp,j,i,k;
+    ADTErr status;
+    int* cardsPtr = Cards;
+    
+    stp = _startingPlayer;
+    PutString("       Passing 3 cards Stage      ");
+
+    /******************************************************//*<< throwing cards loop*/
+    for(j=0;j<4;++j)
+    {
+        PutString(PlayerGetName(_round->m_players[(stp + j) % 4]));
+        if ((status = PlayerPassThreeCards(_round->m_players[(stp + j) % 4],
+         Cards+3*j, IsHumanPlayer(_round->m_players[(stp + j) % 4]))) != ERR_OK)
+        {
+            return status;
+        }
+        Print3Cards(cardsPtr + 3 * j, _round->m_deck);
+    }
+    /*******************************************************/
+
+    /******************************************************/ /*<< Inserting cards loop*/
+
+    for (j = 0; j < 4; ++j)
+    {
+        if((stp+j)%4 == 0)
+        {
+            for (i = 0; i < 3; ++i)
+            {
+                if ((status = PlayerInsertCard(_round->m_players[(stp + j) % 4], *(cardsPtr + 9 + i))) != ERR_OK)
+                {
+                    return status;
+                }
+            }
+        }
+        else
+        {
+            k=(stp+j)%4;
+            for (i = 0; i < 3; ++i)
+            {
+                if ((status = PlayerInsertCard(_round->m_players[(stp + j) % 4], *(cardsPtr + (k - 1) * 3 + i))) != ERR_OK)
+                {
+                    return status;
+                }
+            }
+        }
+    }
+    return ERR_OK;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    static void ThrowHumanCard(Hand * _hand, Vector * _table, int _humanCardIndex)
+    {
+        const Card *humanCard = NULL;
+        size_t numOfCards, Index;
+        int getResult, thrownCardIndex;
+
+        humanCard = GetCard(_humanCardIndex, _hand->m_deck);
+        VectorItemsNum(_hand->m_suits[humanCard->suit], &numOfCards);
+
+        while (numOfCards != 0)
+        {
+            VectorGet(_hand->m_suits[humanCard->suit], numOfCards - 1, &getResult);
+            if (_humanCardIndex == getResult)
+            {
+                Index = numOfCards - 1;
+                break;
+            }
+            --numOfCards;
+        }
+        swapFrom(_hand->m_suits[humanCard->suit], Index);
+
+        VectorDelete(_hand->m_suits[humanCard->suit], &thrownCardIndex);
+        VectorAdd(_table, _humanCardIndex);
+        /*sort again*/
+        InsertionSort(_hand->m_suits[humanCard->suit]);
+    }

@@ -1,0 +1,6 @@
+proc num 3
+ver num 2
+threads num 3
+channel name MSGQQ
+channel bufferSize 1024
+

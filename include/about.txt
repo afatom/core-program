@@ -1,0 +1,23 @@
+details about this includes
+last update:Fri Apr 13 20:27:45 2018 
+
+
+ /******************************************************************************/
+ @ channel.h Module @ 
+ 
+ implementing channel over msgq with muhammad. typeless channel.
+ /** 
+ *  @file channel.h
+ *  @brief Channel based on serial Comm datat structure module.
+ *	
+ *  @details  Implements a Channel DS based on msgq structure.
+ *  user can send any kind of data/structure or msg he wants.
+ *
+ * @warning: all Channel functions are unsafe functions! user is responsible for
+ * providing valid data! if the caller passes invalid data, behavior is undefined!
+ *
+ *  @author adham
+ * 
+ *  @bug 
+ */
+ /******************************************************************************/

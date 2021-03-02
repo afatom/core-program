@@ -1,0 +1,8 @@
+SOLoaderTest.o: SOLoaderTest.cpp
+soloader.o: soloader.cpp
+hub.o: ../../hub/hubt/hub.cpp
+nevent.o: ../../event/nevent.cpp
+agentconfig.o: ../fileConfig/agentconfig.cpp
+publisher.o: ../../hub/publisher/publisher.cpp
+distributor.o: ../../hub/distributor/distributor.cpp
+registrar.o: ../../hub/registrar/registrar.cpp

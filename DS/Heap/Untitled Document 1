@@ -1,0 +1,53 @@
+static void Heapify(Heap *_heap)
+{
+  size_t fatherIndex = 0;
+  size_t lSon;
+  size_t rSon;
+  int lSonValue, rSonValue, fatherValue;
+
+  while (fatherIndex < _heap->m_heapSize)
+  {
+    lSon = fatherIndex * 2 + 1;
+    rSon = fatherIndex * 2 + 2;
+    VectorGet(_heap->m_vec, fatherIndex, &fatherValue);
+
+    if (rSon <= _heap->m_heapSize - 1) /*2 sons*/
+    {
+      VectorGet(_heap->m_vec, lSon, &lSonValue);
+      VectorGet(_heap->m_vec, rSon, &rSonValue);
+      if (fatherValue > lSonValue && fatherValue > rSonValue) /*correct heap*/
+      {
+        return;
+      }
+      if (fatherValue < lSonValue && lSonValue > rSonValue) /*swap with the left son*/
+      {
+        Swap(_heap, fatherIndex, lSon);
+        fatherIndex = lSon;
+      }
+      else /*swap with the right son*/
+      {
+        Swap(_heap, fatherIndex, rSon);
+        fatherIndex = rSon;
+      }
+    }
+    else if (lSon <= _heap->m_heapSize - 1) /*have 1 son*/
+    {
+      VectorGet(_heap->m_vec, lSon, &lSonValue);
+      if (fatherValue > lSonValue) /*correct heap*/
+      {
+        return;
+      }
+      if (fatherValue < lSonValue) /*swap with the left son*/
+      {
+        Swap(_heap, fatherIndex, lSon);
+        fatherIndex = lSon;
+      }
+    }
+    else /*0 sons , I reach a leafe stop the function*/
+    {
+      return;
+    }
+  }
+  return;
+}
+

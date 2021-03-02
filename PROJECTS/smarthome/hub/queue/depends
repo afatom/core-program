@@ -1,0 +1,2 @@
+qtest.o: qtest.cpp
+nevent.o: ../../event/nevent.cpp

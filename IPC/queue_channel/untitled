@@ -1,0 +1,21 @@
+if(NULL == _channel)
+	{
+		return CHANNEL_UN_INITIALIZED;
+	}
+	
+	if(NULL == _pMsg)
+	{
+		return CHANNEL_INVALID_FUNCTION_PARAMETER;
+	}
+	
+	
+	if(NULL == (char*)_channel )
+	{
+		return CHANNEL_UN_INITIALIZED;
+	}
+	
+	if(NULL == _pMsg)
+	{
+		return CHANNEL_INVALID_FUNCTION_PARAMETER;
+	}
+	

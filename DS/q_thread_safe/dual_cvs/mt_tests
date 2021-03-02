@@ -1,0 +1,182 @@
+
+
+typedef struct Args{
+	Queue* 	m_q;
+	void* 	m_item;
+	void**	m_pItem;
+	size_t 	m_numOfItems;
+	void**  m_itemsArray;
+	}Args;
+
+
+
+void* Queue_Pthread_Insert(void* _args)
+{
+	QueueResult stat;
+	size_t i =0;
+	
+	while(i < ((Args*)_args)->m_numOfItems)
+	{
+		if((stat = QueueInsert(((Args*)_args)->m_q, ((Args*)_args)->m_itemsArray[i])) != QUEUE_SUCCESS)
+		{
+			return (void*)(stat);
+		}
+		
+		++i;
+	}
+	
+	return (void*)(QUEUE_SUCCESS);
+}
+
+
+
+void* Queue_Pthread_Remove(void* _args)
+{
+	QueueResult stat;
+	stat = QueueRemove(((Args*)_args)->m_q, ((Args*)_args)->m_pItem);
+	return (void*)(stat);
+}
+
+
+
+
+
+UNIT(Insert_And_Remove_Items_From_Queue_Test)
+    Person** prr;
+    void* _pItem =NULL;
+    int i;
+    Queue *ptr = NULL;
+    ptr = QueueCreate();
+    ASSERT_THAT(ptr!=NULL);
+
+    prr = (Person**)malloc(SIZE * sizeof(Person*));
+    assert(NULL != prr);
+    for(i = 0;i < SIZE; ++i)
+    {
+        prr[i]=(Person*)malloc(sizeof(Person));
+        prr[i]->age= (char)(i+1);
+        ASSERT_THAT(QueueInsert(ptr, prr[i]) == QUEUE_SUCCESS);
+    }
+    ASSERT_THAT(IsEmptyQueue(ptr)!=TRUE);
+    ASSERT_THAT(QueueItemsNum(ptr)== SIZE);
+    /*
+    QueueItemsPrint(ptr, PrintItem, NULL);
+    puts("\n");*/
+    QueueRemove(ptr, &_pItem);
+    /*
+    QueueItemsPrint(ptr, PrintItem, NULL);
+    puts("\n");*/
+    free(_pItem);
+    QueueRemove(ptr, &_pItem);
+    /*
+    QueueItemsPrint(ptr, PrintItem, NULL);
+    puts("\n");*/
+    free(_pItem);
+    /*
+    QueueItemsPrint(ptr, PrintItem, NULL);
+    puts("\n");*/
+    ASSERT_THAT(QueueItemsNum(ptr) == SIZE-2);
+    QueueDestroy(&ptr, elementDestroyer);
+    QueueDestroy(NULL, elementDestroyer);
+    free(prr);
+    ASSERT_THAT (ptr == NULL);
+END_UNIT
+
+
+
+
+
+/*****************************************************************************/
+UNIT(MT_Insert_And_Remove_Items_From_Queue_Test)
+    Person** prr;
+    void* _pItem =NULL;
+    int i;
+    Queue *ptr = NULL;
+    ptr = QueueCreate();
+    ASSERT_THAT(ptr!=NULL);
+
+    prr = (Person**)malloc(SIZE * sizeof(Person*));
+    assert(NULL != prr);
+    for(i = 0;i < SIZE; ++i)
+    {
+        prr[i]=(Person*)malloc(sizeof(Person));
+        prr[i]->age= (char)(i+1);
+        ASSERT_THAT(QueueInsert(ptr, prr[i]) == QUEUE_SUCCESS);
+    }
+    ASSERT_THAT(IsEmptyQueue(ptr)!=TRUE);
+    ASSERT_THAT(QueueItemsNum(ptr)== SIZE);
+  
+    QueueRemove(ptr, &_pItem);
+  
+    free(_pItem);
+    QueueRemove(ptr, &_pItem);
+
+    free(_pItem);
+
+    ASSERT_THAT(QueueItemsNum(ptr) == SIZE-2);
+    QueueDestroy(&ptr, elementDestroyer);
+    QueueDestroy(NULL, elementDestroyer);
+    free(prr);
+    ASSERT_THAT (ptr == NULL);
+END_UNIT
+/*****************************************************************************/
+UNIT(Remove_Items_From_Empty_Queue_Test)
+    Person** prr;
+    void* _pItem =NULL;
+    int i;
+    Queue *ptr = NULL;
+    ptr = QueueCreate();
+    ASSERT_THAT(ptr!=NULL);
+    ASSERT_THAT(QueueRemove(ptr, &_pItem) == QUEUE_UNDERFLOW);
+
+    prr = (Person**)malloc(SIZE * sizeof(Person*));
+    assert(NULL != prr);
+    for(i = 0;i < SIZE; ++i)
+    {
+        prr[i]=(Person*)malloc(sizeof(Person));
+        prr[i]->age= (char)(i+1);
+        ASSERT_THAT(QueueInsert(ptr, prr[i]) == QUEUE_SUCCESS);
+    }
+    ASSERT_THAT(IsEmptyQueue(ptr)!=TRUE);
+    ASSERT_THAT(QueueItemsNum(ptr)== SIZE);
+
+    for (i = 0; i < SIZE; ++i)
+    {
+        ASSERT_THAT(QueueRemove(ptr, &_pItem) == QUEUE_SUCCESS);
+        free(_pItem);
+    }
+
+    ASSERT_THAT(QueueRemove(ptr, &_pItem) == QUEUE_UNDERFLOW);
+    ASSERT_THAT(QueueRemove(NULL, &_pItem) == QUEUE_UNINITIALIZED_ERROR);
+    ASSERT_THAT(QueueRemove(ptr, NULL) == QUEUE_INVALID_ITEM);
+
+    QueueDestroy(&ptr, elementDestroyer);
+    QueueDestroy(NULL, elementDestroyer);
+    free(prr);
+    ASSERT_THAT (ptr == NULL);
+END_UNIT
+/*****************************************************************************/
+UNIT(Insert_Items_To_NULL_Queue_Test)
+
+    int* _pItem =NULL;
+    int i;
+    Queue *ptr = NULL;
+    ASSERT_THAT(ptr==NULL);
+    i = 10;
+    _pItem = &i;
+    ASSERT_THAT(QueueInsert(ptr, _pItem) == QUEUE_UNINITIALIZED_ERROR);
+
+    QueueDestroy(&ptr, elementDestroyer);
+    QueueDestroy(NULL, elementDestroyer);
+    ASSERT_THAT (ptr == NULL);
+END_UNIT
+/*****************************************************************************/
+
+
+
+
+
+
+
+/*****************************************************************************/
+

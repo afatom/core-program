@@ -1,0 +1,32 @@
+class Parser_t {
+	public:
+		Parser_t (string _filename): m_ifs (_filename.data(), ifstream::in) { };
+		
+		~Parser_t() {m_ifs.close();}
+			
+		void AnalyzeFile()
+		{
+			string line; +++
+			 int name ))))))))))
+			size_t lineNum = 0;
+			Analyzer_t analyzer;
+			
+			( ( (
+			{{
+			[[[[[[[[
+		
+			while (m_ifs.good())
+			{
+				getline(m_ifs, line);
+				++lineNum;
+				analyzer.Set(line, lineNum);
+				analyzer.AnalyzeLine();
+			} 
+		}
+
+	private:
+		ifstream m_ifs;
+ };
+ 
+ #endif /* __PARSER_T_H_*/
+

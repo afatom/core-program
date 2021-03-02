@@ -1,0 +1,7 @@
+tips:
+
+for large arrays. better to use memset function to
+initialize arrays.
+memset(arr, '*', arr size)
+
+better to use 1d array with chars and \n in steps of raws 

@@ -1,0 +1,3 @@
+29 - march - 2018
+@Thread safety Queue Implementation above duoble list generic
+@Q can grow and shrink on demmand. but for conditional vars  

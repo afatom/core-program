@@ -1,0 +1,11 @@
+smartHomeMain.o: smartHomeMain.cpp
+agentconfig.o: ../setup/fileConfig/agentconfig.cpp
+txtreader.o: ../setup/fileConfig/txtreader.cpp
+soloader.o: ../setup/SOLoader/soloader.cpp
+agentsFactory.o: ../setup/agentsFactory/agentsFactory.cpp
+nevent.o: ../event/nevent.cpp
+smartHome.o: smartHome.cpp
+registrar.o: ../hub/registrar/registrar.cpp
+distributor.o: ../hub/distributor/distributor.cpp
+publisher.o: ../hub/publisher/publisher.cpp
+hub.o: ../hub/hubt/hub.cpp

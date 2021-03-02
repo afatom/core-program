@@ -1,0 +1,5 @@
+newserver.o: newserver.cpp server.h ../include/wtqueue.h \
+ ../include/TException_t.h ../include/nevent.h
+nevent.o: nevent.cpp ../include/nevent.h
+serverTest.o: serverTest.cpp server.h ../include/wtqueue.h \
+ ../include/TException_t.h ../include/nevent.h

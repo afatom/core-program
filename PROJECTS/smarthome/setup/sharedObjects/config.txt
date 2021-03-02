@@ -1,0 +1,20 @@
+[light-1-a-1]
+type = LgHue
+room = room_1_a
+floor = 1
+log = lights
+config = iot:1003,sat:242, brigh:154, hue:8200
+
+[light-1-a-1]
+type = LgContHue
+room = room_1_a
+floor = 1
+log = lights
+config = iot:1003,sat:242, brigh:154, hue:8200
+
+[light-2-a-1]
+type = LgHue
+room = room_1_a
+floor = 4e
+log = lights
+config = iot:1003,sat:242, brigh:154, hue:8200

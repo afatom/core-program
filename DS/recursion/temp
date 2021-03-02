@@ -1,0 +1,46 @@
+
+/*void rawmult(size_t raw, size_t col)*/
+/*{*/
+/*	if (raw == 0) /*reach the begining of raw*/*/
+/*	{*/
+/*		return;*/
+/*	}*/
+/*   	printf("\n");*/
+/*	rawmult(raw, multplier);  	*/
+/*   	printf("%lu ", multplier*size);*/
+/*}*/
+
+/*void MultTable(size_t _raw, size_t _col)*/
+/*{*/
+/*	*/
+/*	if (_raw == 1 && _height == 1)*/
+/*	{*/
+/*		printf("1 ");	*/
+/*	}*/
+/*	/*go to the beginig of the raw*/*/
+/*   	MultTable(_raw-1, _col);*/
+/*	rawmult(_raw, _col);  /*build one raw*/*/
+/*	printf("\n");*/
+/*	*/
+/*	MultTable(_raw-1, _height-1);*/
+/*	rawmult(_raw-1, _height-1);*/
+/*}*/
+
+
+
+/*
+void PrintTriangleOp(size_t _raw, size_t _height, char charToPrint)
+{
+	if (_raw == 0 || _height == 0)
+	{
+		return;
+	}
+	PrintTrianglemod(_raw-1, _height, charToPrint);
+	putchar("%c", charToPrint);
+	putchar("\n");
+	if(_raw == 1)
+	{
+		PrintTrianglemod(_height-1, _height-1, charToPrint);
+	}
+}
+*/

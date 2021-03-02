@@ -1,2 +1,4 @@
-# core-program
-core bootacmp program projects
+# Main repository 
+
+this dir contains all experis work files
+

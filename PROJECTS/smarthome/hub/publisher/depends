@@ -1,0 +1,3 @@
+publisherTest.o: publisherTest.cpp
+publisher.o: publisher.cpp
+nevent.o: ../../event/nevent.cpp

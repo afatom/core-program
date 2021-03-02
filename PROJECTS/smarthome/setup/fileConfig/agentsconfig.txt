@@ -1,0 +1,31 @@
+[light-1-a-1]
+type = LgHue
+room = room_1_a
+floor = 1
+log = lights
+soname = LgHuelight-1-a-1.so
+config = iot:1003,sat:242, brigh:154, hue:8200
+
+[light-1-a-2]
+type = LgHue
+room = room_1_a
+floor = 1
+log = lights
+soname = LgHuelight-1-a-2.so
+config = iot:1008,sat:242, brigh:154, hue:8200
+
+[AC-1-b-1]
+type = SiemensCool
+room = room_1_b
+floor = 1
+log = AirConditioner
+soname = SiemensCoolAC-1-b-1.so
+config = iot:1003,sat:242, brigh:154, hue:8200
+
+[AC-1-b-2]
+type = SiemensCool
+room = room_1_b
+floor = 1
+log = AirConditioner
+soname = SiemensCoolAC-1-b-2.so
+config = iot:1008,sat:242, brigh:154, hue:8200

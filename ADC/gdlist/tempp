@@ -1,0 +1,447 @@
+
+
+
+
+/*
+
+UNIT(Push_Head_One_Test)
+
+END_UNIT
+
+UNIT(List_Count_Few_Items_Test)
+
+
+UNIT(Push_Head_Few_Test)
+
+END_UNIT
+
+UNIT(Push_Head_Many_Test)
+
+END_UNIT
+
+UNIT(Push_Tail_One_Test)
+
+END_UNIT
+
+UNIT(Push_Tail_Few_Test)
+
+END_UNIT
+
+UNIT(Push_Tail_Many_Test)
+    size_t cnt;
+    int i = 0;
+    List *list = ListCreate();
+    ADTErr res;
+    for (; i < 25; ++i)
+    {
+        res = ListPushTail(list, 1);
+        ASSERT_THAT(res == ERR_OK);
+    }
+    cnt = ListCountItems(list);
+    ASSERT_THAT(cnt == 25);
+    ListDestroy(list);
+END_UNIT
+
+UNIT(Pop_Head_One_Test)
+    size_t cnt;
+    int i = 0;
+    int data;
+    List *list = ListCreate();
+    ADTErr res;
+    for (; i < 6; ++i)
+    {
+        res = ListPushHead(list, i);
+        ASSERT_THAT(res == ERR_OK);
+    }
+    cnt = ListCountItems(list);
+    ASSERT_THAT(cnt == 6);
+    res = ListPopHead(list, &data);
+    ASSERT_THAT(res == ERR_OK);
+    cnt = ListCountItems(list);
+    ASSERT_THAT(cnt == 5);
+    ASSERT_THAT(data == 5);
+    ListDestroy(list);
+END_UNIT
+
+UNIT(Pop_Head_Few_Test)
+    size_t cnt;
+    int i = 0, j =0;
+    int data;
+    List *list = ListCreate();
+    ADTErr res;
+    for (; i < 10; ++i)
+    {
+        res = ListPushHead(list, i);
+        ASSERT_THAT(res == ERR_OK);
+    }
+    cnt = ListCountItems(list);
+    ASSERT_THAT(cnt == 10);
+    res = ListPopHead(list, &data);
+    ASSERT_THAT(res == ERR_OK);
+    cnt = ListCountItems(list);
+    ASSERT_THAT(cnt == 9);
+    ASSERT_THAT(data == 9);
+    for(; j < 9; ++j)
+    {
+        res = ListPopHead(list, &data);
+        ASSERT_THAT(res == ERR_OK);
+        ASSERT_THAT(data == 8-j);
+        cnt = ListCountItems(list);
+        ASSERT_THAT(res == ERR_OK);
+        ASSERT_THAT(cnt == 8-j);
+    }
+    ListDestroy(list);
+END_UNIT
+
+UNIT(Pop_Head_Many_Test)
+    size_t cnt;
+    int i = 0, j = 0;
+    int data;
+    List *list = ListCreate();
+    ADTErr res;
+    for (; i < 100; ++i)
+    {
+        res = ListPushHead(list, i);
+        ASSERT_THAT(res == ERR_OK);
+    }
+    cnt = ListCountItems(list);
+    ASSERT_THAT(cnt == 100);
+    res = ListPopHead(list, &data);
+    ASSERT_THAT(res == ERR_OK);
+    cnt = ListCountItems(list);
+    ASSERT_THAT(cnt == 99);
+    ASSERT_THAT(data == 99);
+    for (; j < 98; ++j)
+    {
+        res = ListPopHead(list, &data);
+        ASSERT_THAT(res == ERR_OK);
+        ASSERT_THAT(data == 98 - j);
+        cnt = ListCountItems(list);
+        ASSERT_THAT(res == ERR_OK);
+        ASSERT_THAT(cnt == 98 - j);
+    }
+    ListDestroy(list);
+END_UNIT
+/******************************************************************************/
+UNIT(Pop_Tail_Empty_List_Test)
+  size_t cnt;
+  List *list = ListCreate();
+  ADTErr res;
+  int data;
+  cnt = ListCountItems(list);
+  ASSERT_THAT(cnt == 0);
+  res = ListPopTail(list, &data);
+  ASSERT_THAT(res == ERR_UNDERFLOW);
+  ListDestroy(list);
+END_UNIT
+/******************************************************************************/
+/******************************************************************************/
+UNIT(Pop_Head_Empty_List_Test)
+  size_t cnt;
+  List *list = ListCreate();
+  ADTErr res;
+  int data;
+  cnt = ListCountItems(list);
+  ASSERT_THAT(cnt == 0);
+  res = ListPopHead(list, &data);
+  ASSERT_THAT(res == ERR_UNDERFLOW);
+  ListDestroy(list);
+END_UNIT
+/******************************************************************************/
+
+UNIT(Pop_Tail_One_Test)
+  size_t cnt;
+  int i = 0;
+  int data;
+  List *list = ListCreate();
+  ADTErr res;
+  for (; i < 6; ++i)
+  {
+      res = ListPushTail(list, i);
+      ASSERT_THAT(res == ERR_OK);
+  }
+  cnt = ListCountItems(list);
+  ASSERT_THAT(cnt == 6);
+  res = ListPopTail(list, &data);
+  ASSERT_THAT(res == ERR_OK);
+  cnt = ListCountItems(list);
+  ASSERT_THAT(cnt == 5);
+  ASSERT_THAT(data == 5);
+  ListDestroy(list);
+END_UNIT
+
+UNIT(Pop_Tail_Few_Test)
+size_t cnt;
+int i = 0, j = 0;
+int data;
+List *list = ListCreate();
+ADTErr res;
+for (; i < 10; ++i)
+{
+    res = ListPushTail(list, i);
+    ASSERT_THAT(res == ERR_OK);
+}
+cnt = ListCountItems(list);
+ASSERT_THAT(cnt == 10);
+res = ListPopTail(list, &data);
+ASSERT_THAT(res == ERR_OK);
+cnt = ListCountItems(list);
+ASSERT_THAT(cnt == 9);
+ASSERT_THAT(data == 9);
+for (; j < 9; ++j)
+{
+    res = ListPopTail(list, &data);
+    ASSERT_THAT(res == ERR_OK);
+    ASSERT_THAT(data == 8 - j);
+    cnt = ListCountItems(list);
+    ASSERT_THAT(res == ERR_OK);
+    ASSERT_THAT(cnt == 8 - j);
+}
+ListDestroy(list);
+END_UNIT
+
+UNIT(Pop_Tail_Many_Test)
+size_t cnt;
+int i = 0, j = 0;
+int data;
+List *list = ListCreate();
+ADTErr res;
+for (; i < 100; ++i)
+{
+    res = ListPushTail(list, i);
+    ASSERT_THAT(res == ERR_OK);
+}
+cnt = ListCountItems(list);
+ASSERT_THAT(cnt == 100);
+res = ListPopTail(list, &data);
+ASSERT_THAT(res == ERR_OK);
+cnt = ListCountItems(list);
+ASSERT_THAT(cnt == 99);
+ASSERT_THAT(data == 99);
+for (; j < 98; ++j)
+{
+    res = ListPopTail(list, &data);
+    ASSERT_THAT(res == ERR_OK);
+    ASSERT_THAT(data == 98 - j);
+    cnt = ListCountItems(list);
+    ASSERT_THAT(res == ERR_OK);
+    ASSERT_THAT(cnt == 98 - j);
+}
+ListDestroy(list);
+END_UNIT
+
+UNIT(List_Is_Empty_Test)
+    size_t cnt;
+    int i = 0;
+    int data;
+    int isempty;
+    List *list = ListCreate();
+    ADTErr res;
+    isempty = ListIsEmpty(list);
+    ASSERT_THAT(isempty == 1);
+    for (; i < 10; ++i)
+    {
+        res = ListPushTail(list, i);
+        ASSERT_THAT(res == ERR_OK);
+    }
+    cnt = ListCountItems(list);
+    ASSERT_THAT(cnt == 10);
+    isempty = ListIsEmpty(list);
+    ASSERT_THAT(isempty ==0);
+    res = ListPopTail(list, &data);
+    ASSERT_THAT(res == ERR_OK);
+    cnt = ListCountItems(list);
+    ASSERT_THAT(cnt == 9);
+    ASSERT_THAT(data == 9);
+    isempty = ListIsEmpty(list);
+    ASSERT_THAT(isempty ==0);
+
+END_UNIT
+
+    /*Main function Macro*/
+TEST_SUITE(Double Linked List test)
+    TEST(Create_Test)
+    TEST(Push_Head_Null_Test)
+    TEST(Push_Tail_Null_Test)
+    TEST(List_Count_Zero_Items_Test)
+    TEST(Push_Head_One_Test)
+    TEST(List_Count_Few_Items_Test)
+    TEST(Push_Head_Few_Test)
+    TEST(Push_Head_Many_Test)
+    TEST(Push_Tail_One_Test)
+    TEST(Push_Tail_Few_Test)
+    TEST(Push_Tail_Many_Test)
+    TEST(Pop_Head_One_Test)
+    TEST(Pop_Head_Few_Test)
+    TEST(Pop_Head_Many_Test)
+    TEST(Pop_Tail_One_Test)
+    TEST(Pop_Tail_Few_Test)
+    TEST(Pop_Tail_Many_Test)
+    TEST(Pop_Tail_Empty_List_Test)
+    TEST(Pop_Head_Empty_List_Test)
+    TEST(List_Is_Empty_Test)
+END_SUITE
+
+
+
+
+
+/******************************************************************************************************/
+
+UNIT(Iterators_Createandfuncs_Test)
+	ListItr ptr1=NULL, ptr2=NULL, adhamitr = NULL; 
+	List *list = NULL;
+    size_t cnt;
+    Person* adham = NULL;
+	list = ListCreate();
+	
+	
+	/* @brief Inserts a new node before node the iterator is pointing at
+    * @return an iterator pointing at the element inserted or NULL on error
+    */
+	ASSERT_THAT(list != NULL);
+
+    adham = (Person*)malloc(sizeof(Person));
+    ASSERT_THAT (adham != NULL);
+	ptr2 = ListItrEnd(list);	
+	ASSERT_THAT(ptr2 != NULL);
+    
+    adhamitr = ListItrInsertBefore(ptr2, (void*)adham);
+    ASSERT_THAT(adhamitr != NULL);
+    /*
+    ASSERT_THAT(ptr2 == adhamitr); 
+*/
+
+
+/*
+	ASSERT_THAT(ptr1 == adhamitr);
+  */  
+	ptr1 = ListItrBegin(list);
+	ASSERT_THAT(ptr1 != NULL);
+  
+    ASSERT_THAT(IsListItrPointsToNull(ptr1) == FALSE);
+	ASSERT_THAT(IsListItrPointsToNull(ptr2) == FALSE);
+    ASSERT_THAT(ListItrEquals(ptr1, ptr2)==FALSE);
+    
+    ASSERT_THAT(ListItrEquals(ptr1, adhamitr) == TRUE);
+     
+      
+    cnt = ListSize(list);
+    ASSERT_THAT(cnt == 1);
+    
+    ListItrRemove(adhamitr);
+
+    ListDestroy(&list, NULL);
+	
+    ListItrDestroy(ptr1);
+	ListItrDestroy(ptr2);
+    ListItrDestroy(adhamitr);
+    
+	
+	
+END_UNIT
+
+
+/******************************************************************************************************/
+UNIT(test_ListItr_Begin)
+    List* list;
+    ListItr ItrNext;
+    ListItr listItrBegin, listItrEnd, listItrBefore;
+    int *i, *newNum; 
+    int index;
+   
+    ASSERT_THAT((list = ListCreate()) != NULL);
+   
+    listItrBegin = ListItrBegin(list);
+    listItrEnd = ListItrEnd(list);
+   
+    ASSERT_THAT(ListItrEquals(listItrBegin, listItrEnd));
+   
+    if((i = (int*) malloc(sizeof(int))) != NULL)
+    {
+       *i = NUM;
+       ASSERT_THAT(ListPushHead(list, i) == LIST_SUCCESS);
+    }
+    if((newNum = (int*) malloc(sizeof(int))) != NULL)
+    {
+       *newNum = 321;
+    }
+    listItrBegin = ListItrBegin(list);
+    listItrEnd = ListItrEnd(list);
+    ASSERT_THAT(NUM == *(int*)ListItrGet(listItrBegin));
+    ASSERT_THAT(NUM == *(int*) ListItrSet(listItrBegin, newNum));
+    ASSERT_THAT(321 == *(int*)ListItrGet(listItrBegin));
+ 
+    listItrBefore = ListItrInsertBefore(listItrBegin, i);
+    ASSERT_THAT(*i == *(int*)ListItrGet(listItrBefore));
+   
+    for(index = 0; index < 10; ++index)
+    {
+        if((i = (int*) malloc(sizeof(int))) != NULL)
+        {
+           *i = index;
+           ASSERT_THAT(ListPushHead(list, i) == LIST_SUCCESS);
+        }
+    }
+   
+    listItrBegin = ListItrBegin(list);
+    listItrEnd = ListItrEnd(list);
+    while(!ListItrEquals(listItrBegin, listItrEnd))
+    {
+       
+        /*printf("before - %d\n", *(int*)ListItrGet(listItrBegin));*/
+        listItrBegin = ListItrNext(listItrBegin);
+   
+    }
+    
+    listItrBegin = ListItrBegin(list);
+    ItrNext = ListItrNext(listItrBegin);
+
+    while(!ListItrEquals(listItrBegin, listItrEnd))
+    {
+        ListItrRemove(listItrBegin);
+        listItrBegin = ItrNext;
+        ItrNext = ListItrNext(listItrBegin);
+    }
+   
+    listItrBegin = ListItrBegin(list);
+    listItrEnd = ListItrEnd(list);
+    while(!ListItrEquals(listItrBegin, listItrEnd))
+    {
+       
+        /*printf("after - %d\n", *(int*)ListItrGet(listItrBegin));
+        */
+        listItrBegin = ListItrNext(listItrBegin);
+   
+    }
+    
+    ListItrDestroy(listItrBegin);
+    ListDestroy(&list, ElementDestroyer);
+END_UNIT
+
+/******************************************************************************************************/
+/*
+
+
+
+
+/*************************************************************************************************************************/
+
+ListItr ListItrSplice(ListItr _dest, ListItr _begin, ListItr _end)
+{
+    ListItr temp = NULL;
+    if (NULL == _dest || NULL == _begin || NULL == _end)
+    {
+        return NULL;
+    }
+
+    while (!ListItrEquals(_begin, _end))
+    {
+        temp = _begin;
+        _begin = ListItrNext(_begin);
+        ListItrRemove(_begin);
+    }
+    return NULL;
+}
+
+/******************************************************************************************************/

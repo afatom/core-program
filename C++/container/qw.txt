@@ -1,0 +1,2 @@
+what are the defrence int this ex between vector and = op?
+in both cases we build 

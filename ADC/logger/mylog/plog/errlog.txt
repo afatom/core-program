@@ -1,0 +1,73 @@
+Mar 10 2018 12:23:00 8936 140147275175680 T "fun" "main"@zlogmain.c : 8 "Test heap"
+Mar 10 2018 12:23:03 8945 140245105153792 T "fun" "main"@zlogmain.c : 8 "Test heap"
+Mar 10 2018 14:11:15 12483 140264272471808 T "devide by zero" "main"@zlogmain.c : 10 "Test heap"
+@End Of Log FileMar 10 2018 14:13:05 12661 140103586367232 T "devide by zero" "main"@zlogmain.c : 11 "Test heap"
+Mar 10 2018 14:13:05 12661 140103586367232 T "devide by zero" "main"@zlogmain.c : 11 "Test heap"
+Mar 10 2018 14:13:05 12661 140103586367232 T "devide by zero" "main"@zlogmain.c : 11 "Test heap"
+Mar 10 2018 14:13:05 12661 140103586367232 T "devide by zero" "main"@zlogmain.c : 11 "Test heap"
+Mar 10 2018 14:13:05 12661 140103586367232 T "devide by zero" "main"@zlogmain.c : 11 "Test heap"
+Mar 10 2018 14:13:05 12661 140103586367232 T "devide by zero" "main"@zlogmain.c : 11 "Test heap"
+Mar 10 2018 14:13:05 12661 140103586367232 T "devide by zero" "main"@zlogmain.c : 11 "Test heap"
+Mar 10 2018 14:13:05 12661 140103586367232 T "devide by zero" "main"@zlogmain.c : 11 "Test heap"
+Mar 10 2018 14:13:05 12661 140103586367232 T "devide by zero" "main"@zlogmain.c : 11 "Test heap"
+Mar 10 2018 14:13:05 12661 140103586367232 T "devide by zero" "main"@zlogmain.c : 11 "Test heap"
+@End Of Log File
+Mar 10 2018 14:13:55 12710 140638843180800 T "devide by zero" "main"@zlogmain.c : 11 "Test heap"
+
+Mar 10 2018 14:13:55 12710 140638843180800 T "devide by zero" "main"@zlogmain.c : 11 "Test heap"
+
+Mar 10 2018 14:13:55 12710 140638843180800 T "devide by zero" "main"@zlogmain.c : 11 "Test heap"
+
+Mar 10 2018 14:13:55 12710 140638843180800 T "devide by zero" "main"@zlogmain.c : 11 "Test heap"
+
+Mar 10 2018 14:13:55 12710 140638843180800 T "devide by zero" "main"@zlogmain.c : 11 "Test heap"
+
+Mar 10 2018 14:13:55 12710 140638843180800 T "devide by zero" "main"@zlogmain.c : 11 "Test heap"
+
+Mar 10 2018 14:13:55 12710 140638843180800 T "devide by zero" "main"@zlogmain.c : 11 "Test heap"
+
+Mar 10 2018 14:13:55 12710 140638843180800 T "devide by zero" "main"@zlogmain.c : 11 "Test heap"
+
+Mar 10 2018 14:13:55 12710 140638843180800 T "devide by zero" "main"@zlogmain.c : 11 "Test heap"
+
+Mar 10 2018 14:13:55 12710 140638843180800 T "devide by zero" "main"@zlogmain.c : 11 "Test heap"
+@End Of Log File2018-03-16 00:49:33 2669 0 E TestModule test@zlogmain.c:12    Test message
+2018-03-16 00:49:33 2669 0 F TestModule test@zlogmain.c:14    Test message
+2018-03-16 00:49:33 2669 0 LOG EXIT
+@End Of Log File
+
+
+
+
+
+@@@@@@@@@
+
+2018-03-16 00:50:52 2770 0 E TestModule test@zlogmain.c:12    Test message
+2018-03-16 00:50:52 2770 0 F TestModule test@zlogmain.c:14    Test message
+2018-03-16 00:50:52 2770 0 LOG EXIT
+@End Of Log File2018-03-16 00:53:07 2803 0 E TestModule test@zlogmain.c:12    Test message
+2018-03-16 00:53:07 2803 0 F TestModule test@zlogmain.c:14    Test message
+2018-03-16 00:53:07 2803 0 LOG EXIT
+@End Of Log File
+2018-03-16 00:54:49 2835 0 E HeapModule test@zlogmain.c:12    Test message
+2018-03-16 00:54:49 2835 0 F TestModule test@zlogmain.c:14    Test message
+2018-03-16 00:54:49 2835 0 LOG EXIT
+@End Of Log File2018-03-16 00:56:17 2861 0 E HeapModule test@zlogmain.c:12    Hi iam in main now
+2018-03-16 00:56:17 2861 0 F TestModule test@zlogmain.c:14    Test message bla bla sasd
+2018-03-16 00:56:17 2861 0 LOG EXIT
+@End Of Log File2018-03-16 00:57:01 2884 0 E HeapModule test@zlogmain.c:12    Hi iam in main now
+2018-03-16 00:57:01 2884 0 F TestModule test@zlogmain.c:14    Test message bla bla sasd
+2018-03-16 00:57:01 2884 0 LOG EXIT
+@End Of Log File
+2018-03-16 00:57:24 2897 0 E HeapModule test@zlogmain.c:12    Hi iam in main now
+2018-03-16 00:57:24 2897 0 F TestModule test@zlogmain.c:14    Test message bla bla sasd
+2018-03-16 00:57:24 2897 0 LOG EXIT
+@End Of Log File
+2018-03-16 00:58:33 2923 0 E HeapModule test@zlogmain.c:12    Hi iam in main now
+2018-03-16 00:58:33 2923 0 F TestModule test@zlogmain.c:14    Test message bla bla sasd
+2018-03-16 00:58:33 2923 0 LOG EXIT
+@End Of Log File
+2018-03-16 00:58:57 2939 0 E HeapModule test@zlogmain.c:12    Hi iam in main now
+2018-03-16 00:58:57 2939 0 F TestModule test@zlogmain.c:14    Test message bla bla sasd
+2018-03-16 00:58:57 2939 0 LOG EXIT
+@End Of Log File

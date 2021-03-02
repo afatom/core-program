@@ -1,0 +1,15 @@
+27 -03 -2018  00:34
+status: Create and Destroy - pass.
+1. check if magic number needed in hash struct??
+2. check map stats and the issue with NDEBUG ?? 
+**********************************************************
+Insert:
+sigm fault. tesl line 125
+when inserting to same list (smae index in the list** array that causes sigm or faults)
+
+sigm fault to be correct:
+responsible ;test line 125
+problem: in hashmapfind line 225 226
+item (*item = NULL) - item not initialized
+solu: need to initialize it by calling to itrget funct (get item)
+

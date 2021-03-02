@@ -1,0 +1,3 @@
+registrarTest.o: registrarTest.cpp
+registrar.o: registrar.cpp
+nevent.o: ../../event/nevent.cpp

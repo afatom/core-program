@@ -1,0 +1,21 @@
+Befor runinig smart home, you have to build so agents manualy. follow these steps
+1. go to dir:  smartHome/setup/sharedObjects
+2. open terminal on this dir
+3. type these commands one by one:
+
+3.1 
+g++ -fPIC -g -c -Wall -Wconversion -ansi -pedantic -Werror lgsensor.cpp ../fileConfig/agentconfig.cpp ../../event/nevent.cpp -I../../include
+
+3.2
+g++ -fPIC -g -c -Wall -Wconversion -ansi -pedantic -Werror lgcontroler.cpp ../fileConfig/agentconfig.cpp ../../event/nevent.cpp -I../../include
+  
+3.3
+g++ -shared -Wl,-soname,LgHue.so -o LgHue.so lgsensor.o agentconfig.o nevent.o -lc
+    
+3.4  
+g++ -shared -Wl,-soname,LgContHue.so -o LgContHue.so lgcontroler.o agentconfig.o nevent.o -lc
+
+
+4. go to dir: smarthome/smartHomeLoader
+5. open terminal on this dir and run the make command.
+

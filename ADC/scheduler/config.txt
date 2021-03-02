@@ -1,0 +1,3 @@
+Level = Error
+Path = /home/adham/work/ADC/scheduler
+File = errlogs.txt

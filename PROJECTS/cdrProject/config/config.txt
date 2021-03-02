@@ -1,0 +1,17 @@
+proc num 3
+ver num 2
+threads num 1
+up controll channel name CTRL_CHAN1_UP 
+down controll channel name CTRL_CHAN1_DN 
+cdr channel name MSGQQ123WE
+ui-queryManager channel UITOQMMSGQQ 
+channel bufferSize 1024
+initial sub num 4096
+growtg sub num 8192
+initial op num 64
+growth op num 128
+parser path /home/adhamfaris/work/PROJECTS/cdrProject/parser/parTest.out
+done dir path /home/adhamfaris/work/PROJECTS/cdrProject/done/newdone
+cdrs full path /home/adhamfaris/work/PROJECTS/cdrProject/cdrs
+cdrs relative path ../cdrs
+admin pid 

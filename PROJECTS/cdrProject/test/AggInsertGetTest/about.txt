@@ -1,0 +1,6 @@
+this test is concentrates on insertion and getting aquery (with respect to imsi sub key)
+modules in this test: 
+cdr.txt-->cdr--->agg-->DB--->Hash safe
+
+cdr will parse and give us cdr for this test.
+
